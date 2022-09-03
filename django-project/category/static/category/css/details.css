@@ -1,0 +1,246 @@
+.body-product{
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    width: 40%;
+    padding: 20px;;
+  
+    bottom: 20px;
+    position: relative;
+}
+
+.body-main{
+    display: flex;
+    justify-content: space-between;
+   top: 70px;
+    position: relative;
+    direction: ltr;
+}
+
+
+.body-images{
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    width: 50%;
+    padding: 20px;;
+  
+    bottom: 20px;
+    position: relative;
+}
+
+
+
+
+.left{
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+
+}
+
+.left .extend-btn{
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #2ecc71;
+    width: 40px;
+    padding: 8px 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: .2s;
+    color: white;
+    position: relative;
+    
+
+}
+.left .extend-btn:hover{
+    width: 75px;
+}
+.left .extend-btn:hover a{
+    display: block;
+}
+.left .extend-btn a{
+    display: none;
+    text-decoration: none;
+    font-family: tahoma;
+    color: white;
+    font-size: 14px;
+
+    
+    
+    }
+.share{
+    height: 200px;
+    width: 200px;
+   display: block;
+    position: absolute;
+    left: 40px;
+    
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    
+    top: 35px;
+}
+.share input{
+    width: 90%;
+    top: 10px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+    
+}
+.share img{
+    width: 25%;
+    height: 25%;
+    top: 10px;
+    position: relative;
+    float: left;
+    margin: 5px;
+    border-radius: 70px;
+
+    
+}
+
+.body-share{
+   height: auto;
+   display: block;
+    position: absolute;
+    width: 100%;
+    top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+
+}
+
+.share h5{
+z-index: 5;
+color: black;
+margin: 10px;
+float: left;
+}
+ .share h6{
+    color: rgb(102, 98, 98);
+   float: left;
+    margin-left: 70px;
+    margin-top: -5px;
+}
+
+.bodycomment{
+    align-items: center;
+    top: 500px;
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    border-radius: 15px;
+    padding: 10px;
+}
+.replycomment{
+
+    width: 85%;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:-50px;
+    word-wrap: break-word;
+    margin-top: 10px;
+    
+
+
+}
+
+#comment{
+    word-wrap: break-word;
+
+}
+
+.ranking-body {
+    
+    box-shadow: 0px 2px 8px 0px #3d3d3d;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 20px;
+}
+.ranking-body .rankink-star {
+    padding: 35px;
+    width: 50%;
+    float: right;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.ranking-body .rankink-star .ranking{
+    direction: ltr;
+    height: 12px;
+    width: 100%;
+    position: relative;
+    background-color: #dddbdb;
+    margin-top:10px ;
+    border-radius: 20px;
+
+}
+.ranking-body .rankink-star .ranking label{
+    color: black;
+    
+    position: absolute;
+    left: -15px;
+    top: -8px;
+}
+
+.ranking-body .rankink-star .ranking .star-rankink{
+    width: 0%;
+    background-image: linear-gradient(to right, green 100%, white 0%);
+
+}
+
+.all-rankink{
+    width: 50%;
+    float: left;
+    height: 100%;
+    text-align: center;    
+    
+}
+.all-rankink h1{
+    font-size: 45px;
+    top: 30px;
+    position: relative;
+}
+.all-rankink .stars{
+    font-size: 16px;
+    top: 50px;
+    position: relative;
+    display: inline-block;
+
+}
+.all-rankink .stars i{
+    color: black;
+    cursor: pointer;
+}
+.half{
+    color: yellow;
+   
+}
+
+.body-images .first-img img{
+    height: 260px;
+width: 100%;
+}
+.body-images .first-img{
+    width: 100%;
+    height: 250pxpx;
+}
+.body-images .next-img{
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+
+}
+.body-images .next-img img{
+    box-sizing: border-box;
+    position: relative;
+    top: 10px;
+    width: 100%;
+    height: 100%;
+}

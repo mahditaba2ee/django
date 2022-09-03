@@ -1,0 +1,203 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+    category
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'category/css/details.css' %}" rel="stylesheet" >
+
+{% endblock %}
+  
+{% block body %}
+
+<p id="message" class="alert alert-info" hidden ></p>
+
+<div class="container">
+  <div class="row body-main mt-5">
+    <div dir="rtl" class="body-product">
+      <h4>نوع محصول:{{product.category}}</h4>
+      <hr>
+      <h6 id="btn-id-product" data-id="{{product.id}}"> نام محصول:{{product.name}}</h6>
+      <h6> برند :{{product.brand}}</h6>
+      <hr>
+      <hr>
+      <h6> مخصوص برای:{{product.type}}</h6>
+      <h6>  وضعیت:{% if product.available %}موجود{% else %}ناموجود {% endif %}</h6>
+      <h6>  توضیحات:{{product.des}}</h6>
+      <h6> قیمت:{{product.price}}</h6>
+
+
+      
+      <div  class="left">
+        <div  class="extend-btn {% if product.id in buys %} active {% endif %} " data-id="{{product.id}}" data-status="{% if product.id in buys %}sell{% else %}buy{% endif %}" data-slug="{{product.slug}}" data-name="{{product.name}}" onclick="sendproduct(this)">
+            <i class="fas fa-shopping-cart"></i>
+            <a> خریذ </a>
+        </div>
+
+       
+
+
+        <div data-id="{{product.id}}" data-is_like="{% if request.user in product.like.all %}dis{% endif %}like" onclick="btn(this,'like')" 
+        class="extend-btn {% if request.user in product.like.all %}active{% endif %} ">
+            <i  class="fas fa-heart "></i>
+            <a> لایک </a>
+
+        </div>
+      
+    
+    </div>
+
+
+    </div>
+
+    <!-- <input type="number" class="form-control col-md-2"> -->
+    <!-- <a data-slug="{{product.slug}}" class="btn btn-primary mt-2 col-md-4" onclick="sendproduct()" id="btnsene" >افزودن ب سبد خرید</a> -->
+    
+
+    <div class="body-images">
+      <div class="row">
+        {% for img in product.iproduct.all %}
+          
+          
+        {% if forloop.first %}
+          <div class="col-md-12">
+            <div class="first-img">
+              <img id="img-first" data-src="{{img.image.url}}"  src="{{img.image.url}}" alt="">
+            </div>
+          </div>
+          {% else %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+              
+              <div class="next-img">
+                <img id="img-sec" data-id="{{img.id}}" class="" onclick="img_change(this)" data-src="{{img.image.url}}" src="{{img.image.url}}" alt="">
+              </div>
+
+            </div>
+
+        {% endif%}
+        {% endfor %}
+
+        </div>
+    
+    </div>
+   
+     
+    
+    <div class="stars">
+
+                            <!--  https://files.free-learn.ir/Tryitself/css/functions/Tryit_CSS_Functions_radial-gradient_T1.php-->
+    </div>
+    <div class="ranking-body mb-5">
+      <div class="rankink-star">
+      <div class="ranking">
+        <label for="">5</label>
+        <div id="rank5"  class="ranking star-rankink"></div>
+      </div>
+      <div class="ranking">
+        <label for="">4</label>
+        <div id="rank4"  class="ranking star-rankink"></div>
+
+      </div>
+
+      <div class="ranking">
+        <label for="">3</label>
+        <div id="rank3"  class="ranking star-rankink"></div>
+
+      </div>
+      <div class="ranking">
+        <label for="">2</label>
+        <div id="rank2"  class="ranking star-rankink"></div>
+
+      </div>
+      <div class="ranking">
+        <label for="">1</label>
+        <div id="rank1"  class="ranking star-rankink"></div>
+
+      </div>
+      </div>
+      <div class="all-rankink">
+
+        <h1 id="all-ranking"><i class="fas fa-star half"></i>
+        </h1>
+        <div dir="ltr" onmouseleave="star_leave()" class="stars">
+      <i id="btn1" data-count="1" data-id="{{product.id}}" onclick="star_click(this)" onmousemove="f(this,1)" onmouseleave="m(1)" class="fas fa-star"></i>
+      <i id="btn2" data-count="2" data-id="{{product.id}}" onclick="star_click(this)" onmousemove="f(this,2)" onmouseleave="m(2)" class="fas fa-star"></i>
+      <i id="btn3" data-count="3" data-id="{{product.id}}" onclick="star_click(this)" onmousemove="f(this,3)" onmouseleave="m(3)" class="fas fa-star"></i>
+      <i id="btn4" data-count="4" data-id="{{product.id}}" onclick="star_click(this)" onmousemove="f(this,4)" onmouseleave="m(4)" class="fas fa-star"></i>
+      <i id="btn5" data-count="5" data-id="{{product.id}}" onclick="star_click(this)" onmousemove="f(this,5)" onmouseleave="m(5)" class="fas fa-star"></i>
+
+     
+      </div>
+      </div>
+    </div>
+    <p></p>
+ 
+  </div>
+</div>
+       
+          
+
+
+
+
+
+
+          <div id="frm" class="col-md-4 bg-dark mt-5 mx-auto">
+         
+    
+            
+            <div class="col-md-6 mx-auto">
+                <label for="exampleInputPassword1" class="form-text mb-2">   نظر شما :</label>
+                <input type="text" class="form-control col-md-6 " dir="ltr" placeholder="" name="comment" id="commentinput">
+            
+              </div>
+            <div class="mx-auto m-2 col-md-12 text-center" >
+
+            <button onclick="commentsumbit(this)" data-productid="{{product.id}}" data-productslug="{{product.slug}}" data-catslug="{{product.category.slug}}" data-brandslug="{{product.brand.slug}}" class="col-md-6 btn btn-secondary mb-2">تایید</button>
+            </div>
+           
+          </div>
+          
+          {% for c in comment %}
+               
+                
+
+              <div id="comments" class=" bodycomment mb-5 col-md-4 mx-auto ">
+                <div id="comment" class="alert alert-primary mb-5" >
+                  <p  style="font-size: 12px; " dir="ltr" class="" >{{c.created|timesince}} ... {{c.user}}</p>
+                  <p>{{c.body}}</p>
+                  <p class="" style="cursor: pointer;" data-username="{{c.user.username}}" data-id="{{c.id}}"   dir="ltr" onclick="reply(this)" >پاسخ</p>
+                </div>
+                {% for r in c.rcomment.all %}
+                
+                <div id="replycomment" class="replycomment alert alert-info " >
+                  <p  style="font-size: 12px; " dir="ltr" class="" >{{r.created|timesince}} ... {{r.user}}</p>
+                  <p>{{r.body}}</p>
+                  <p class="" style="cursor: pointer;" data-username="{{r.user.username}}" data-id="{{c.id}}"   dir="ltr" onclick="reply(this)" >پاسخ</p>
+                </div>
+                {% endfor %}
+                 
+                
+              </div>
+              
+              <br>
+                
+                
+          {% endfor %}
+        </div>
+      
+
+    </div>
+  </div>
+{% endblock %}
+ 
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'category/js/details.js' %}">
+
+   
+</script>
+{% endblock %}

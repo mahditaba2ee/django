@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    category
+{% endblock %}
+
+  
+  
+{% block body %}
+<div  class="container">
+    <div class="row">
+        <p dir="ltr" class="alert alert-info mt-2">تگ شده</p>
+
+        {% for tag in comments_tag %}
+        <a href="{{comment.comment.product.get_absoulut_url}}"> 
+            <p dir="ltr" class="alert alert-primary">{{tag.body}}</p>
+        </a>
+        {% endfor %}
+        <p dir="ltr" class="alert alert-info mt-2">دیده نشده</p>
+        
+        {% for comment in comments %}
+        <a href="{{comment.comment.product.get_absoulut_url}}"> 
+            <p dir="ltr" class="alert alert-primary">{{comment.body}}</p>
+        </a>
+        {% endfor %}
+        <br>
+        <br>
+        <p dir="ltr" class="alert alert-info mt-5">دیده شده</p>
+            
+        {% for comment in comments_view %}
+        <a href="{{comment.comment.product.get_absoulut_url}}"> 
+            <p dir="ltr" class="alert alert-primary">{{comment.body}}</p>
+        </a>
+        {% endfor %}
+
+        
+
+
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script src="/static/accounts/js/notifications.js"></script>
+{% endblock %}
